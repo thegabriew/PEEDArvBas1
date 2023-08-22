@@ -1,0 +1,46 @@
+class Node:
+    def __init__(self, valor = None):
+        self.valor = valor
+        self.esq = None
+        self.dir = None
+
+    def __repr__(self):
+        return '%s <- %s -> %s' % (self.esq and self.esq.valor, self.valor, self.dir and self.dir.valor) 
+
+
+class ArvoreBinaria:
+    def __init__(self):
+        self.raiz = None
+
+    def Inserir(self, valor):
+        if self.raiz is None:
+            self.raiz = Node(valor)
+        else:
+            self._inserir(valor, self.raiz)
+    
+    def _inserir (self, valor, raiz):
+        if raiz.esq is None:
+            raiz.esq = Node (valor)
+        
+        elif raiz.dir is None:
+            raiz.dir = Node (valor)
+
+        else:
+
+            if raiz.esq.dir is None:
+                self._inserir (valor, raiz.esq)
+
+            else:
+                self._inserir(valor, raiz.dir)
+
+teste = ArvoreBinaria()
+
+teste.Inserir(3)
+teste.Inserir(4)
+teste.Inserir(9)
+teste.Inserir(8)
+teste.Inserir(1)
+teste.Inserir(5)
+teste.Inserir(3)
+
+print (teste.raiz)
